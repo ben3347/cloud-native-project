@@ -7,7 +7,9 @@ As of right now I am unsure what the languages and frameworks will look like.
 
 The primary actions will be the picking of a movie, and the returning of the movie name, synopsis, runtime and numerical ratings it received
 
-# Project name 
+# Cloud Native Movie Review App
+This project aims to provide users with a convenient platform to access movie reviews and statistics. Think of it as a simplified version of Letterboxd. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies.
+
 # Project team members
     - Ben Bejoian 
     - Eleanor Burke 
@@ -35,9 +37,13 @@ key/link for API? https://www.omdbapi.com/?t=titanic&apikey=17e7d0ae
     key: &apikey=17e7d0ae
 
 ## Container 5
-OpenAI 
+Integrates OpenAI for generating AI-driven movie reviews.
 
 # A list of features covering the Minimum Viable Product (MVP) goals
+User-friendly search interface
+AI-generated movie reviews
+Access to movie statistics via an external API
+Blog post-like UI for combining data
 # Full build, run, deployment instructions
 # Full application usage instructions.
 # Diagram showing the component and service relationships.
