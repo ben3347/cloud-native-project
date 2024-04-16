@@ -32,10 +32,11 @@ This project aims to provide users with a convenient platform to access movie re
 * **AI**: Integrates OpenAI for generating AI-driven movie reviews.
 
 ## A list of features covering the Minimum Viable Product (MVP) goals
-* User-friendly search interface
+* User-friendly search interface from Ghost
 * AI-generated movie reviews
 * Access to movie statistics via an external API
 * Blog post-like UI for combining data
+* Chron. jobs and manual posting 
 ## Full build, run, deployment instructions
 ## Full application usage instructions.
 Once the application is deployed, users can:
