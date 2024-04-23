@@ -15,13 +15,13 @@ The primary actions will be the picking of a movie, and the returning of the mov
 - Eleanor Burke 
 - Sean Okpoebo
 ## Full description of the project, design, and architecture.
-This project aims to provide users with a convenient platform to access movie reviews and statistics. Think of it as a simplified version of Letterbox. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. Data will be combined into a blog post like UI 
+This project aims to provide users with a convenient platform to access movie reviews and statistics. Think of it as a simplified version of Letterbox. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. Data will be combined into a blog post like UI.
 
 * **Review Microservice (Container 1)**: Requests information from an AI to create a movie review from online ratings and summaries of the requested movie.  
 
 * **UI (Container 2)**: A ghost UI will allow users to search a movie title in the search bar. If the movie is availible, the UI will show the blog post that container 4 made.
 
-* **Movie Information Microservice (Container 3)**: Every 10 minutes of the program running a movie from the top 50 lifetime gross movies is randomly resquested. The Movie Information MS retrieves information about requested movies from OMDB API. This MS will have a manual post function for the presentation, which requests the top 5 lifetime gross for the purpose of the presentation. There will be provisions to prevent movies from being requested multiple times. 
+* **Movie Information Microservice (Container 3)**: Every 10 minutes of the program running a movie from the top 50 lifetime gross movies is randomly resquested. The Movie Information MS retrieves information about requested movies from OMDB API. This MS will have a manual post function for the presentation, which requests the top 5 lifetime gross for the purpose of the presentation. There will be provisions to prevent movies from being requested multiple times. The information retrieved from OMDB API is added to movieDB.json which has a restFUL API associated with so the other Microservices can access the information. 
 
 * **Blog Post Microservice (Container 4)**: Combines information from the Movie Information MS and the Review MS to create a single blog post. The blog post will be added to ghost.
 
