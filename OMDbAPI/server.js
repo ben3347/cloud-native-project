@@ -15,8 +15,6 @@ app.options("*", (req, res, next) => {
     res.send(200);
 })
 
-
-
 // Get route that gives all data in movieDB.json
 app.get('/', async (req, res) => {
   try {
