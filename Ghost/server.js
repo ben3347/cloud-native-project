@@ -43,7 +43,7 @@ app.post("/post", (req, res) => {
     title: req.body.title,
     html: req.body.html,
     status: "published",
-    excert: req.body.excert,
+    excerpt: req.body.excerpt,
     tags: [{ name: "user" }],
   };
   const payload = { posts: [post] };
