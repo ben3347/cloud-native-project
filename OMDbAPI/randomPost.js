@@ -16,7 +16,7 @@ async function fetchData(){
  
         while(true){
             index = getRandomIntInclusive(0, 45)
-            if (!usedMovies.includes(movieList[index])) {
+            if (!usedMovies.includes(movieList[index])) { // maybe do a get of that movie 
                 movieName = movieList[index];
                 usedMovies.push(movieName);
                 break;
