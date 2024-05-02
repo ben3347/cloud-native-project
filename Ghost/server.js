@@ -1,14 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-var bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 4000;
-const URL = "http://localhost:8080";
-const ADMIN_KEY = "661f3902287e950001c56e66:0831674c9aaae7b493dd17e27988c8fa0eb5bbabdf212e3f323b3c417a584e6f";
+
+// Load environment variables from ConfigMap
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+const GHOST_HOST = process.env.GHOST_HOST;
+const GHOST_PORT = process.env.GHOST_PORT;
+const URL = `http://${GHOST_HOST}:${GHOST_PORT}`;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
@@ -26,9 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/post", (req, res) => {
-  const key = ADMIN_KEY;
-
-  const [id, secret] = key.split(":");
+  const [id, secret] = ADMIN_API_KEY.split(":");
 
   const token = jwt.sign({}, Buffer.from(secret, "hex"), {
     keyid: id,
@@ -55,6 +56,5 @@ app.post("/post", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(port, ": port");
   console.log(`listening on port ${port}`);
 });
