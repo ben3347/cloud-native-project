@@ -6,7 +6,7 @@ const { manualPost } = require('./manualPost');
 const { randomPost } = require('./randomPost');
 
 const app = express();
-const PORT = process.env.PORT || 3000; //this could be added to a config map
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -59,7 +59,7 @@ app.get('/lastElement', async (req, res) => {
 
 });
 
-// GET route that gets and then deletes the first element 
+// GET route that gets and then deletes the first element
 app.get('/getAndDeleteFirstElement', async (req, res) => {
   try {
     // Read the contents of the JSON file
@@ -68,13 +68,13 @@ app.get('/getAndDeleteFirstElement', async (req, res) => {
     // Parse the JSON data
     const movieData = JSON.parse(fileContent);
 
-    // Sends error if DB is empty 
+    // Sends error if DB is empty
     if (movieData.length === 0) {
       res.status(404).send('No movies found');
       return;
     }
 
-    // Retrieves and removes first movie 
+    // Retrieves and removes first movie
     const firstMovie = movieData[0];
     movieData.shift();
 
