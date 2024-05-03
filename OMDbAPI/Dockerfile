@@ -6,12 +6,13 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json before other files 
 # Utilize Docker cache to skip node_modules install if unchanged 
-COPY package*.json ./
+COPY package*.json .
 
 # Install dependencies 
 RUN npm install --production
 
-COPY . .
+COPY *.js .
+COPY movieDB.json .
 
 EXPOSE 3000
-CMD ["npm", "run", "dev" ]
+CMD ["node", "server.js"]

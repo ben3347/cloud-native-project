@@ -6,7 +6,7 @@ const { manualPost } = require('./manualPost');
 const { randomPost } = require('./randomPost');
 
 const app = express();
-const PORT = process.env.PORT || 3000; //this could be added to a config map
+const PORT = process.env.PORT || 3000; 
 
 app.use(cors());
 
