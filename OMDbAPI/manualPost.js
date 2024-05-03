@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const movies = ["avatar", "avengers: endgame", "avatar: the way of water", "titanitc", "star wars: episode VII - the force awakens"]; //this could be a config var
+const movies = ["avatar", "avengers: endgame", "avatar: the way of water", "titanic", "star wars: episode VII - the force awakens"]; //this could be a config var
 
 async function manualPost(){
 
@@ -32,7 +32,6 @@ async function manualPost(){
                 console.error('Error writing to movieDB.json:', error);
             }
 
-
         } catch(error) {
             console.error('Error fetching data:', error);
         }
@@ -41,4 +40,7 @@ async function manualPost(){
 
 }
 
-manualPost();
+//manualPost();
+module.exports = {
+    manualPost
+  };

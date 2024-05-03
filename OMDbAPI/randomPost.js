@@ -11,7 +11,7 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
 }
 
-async function fetchData(){
+async function randomPost(){
     try{
  
         while(true){
@@ -57,4 +57,7 @@ async function fetchData(){
 
 }
 
-fetchData();
+//randomPost();
+module.exports = {
+    randomPost
+  };
