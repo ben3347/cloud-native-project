@@ -4,10 +4,9 @@ metadata:
   name: omd-ghost-poster
   namespace: omd-ghost
 spec:
-  type: LoadBalancer
+  type: ClusterIP  # Use ClusterIP
   selector:
     app: omd-ghost-poster
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 4000
+  - port: 4000  # Use the same port as in the Deployment
+    targetPort: 4000
