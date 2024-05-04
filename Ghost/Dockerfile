@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
+# Install curl
+RUN npm install -g curl
+
 # Install the Node.js dependencies
 RUN npm ci --only=production
 

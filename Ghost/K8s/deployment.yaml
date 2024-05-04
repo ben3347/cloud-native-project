@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: ghost-poster
-        image: sokp/ghost-poster:v1
+        image: sokp/ghost-poster:v2
         envFrom:
         - configMapRef:
             name: ghost-config
