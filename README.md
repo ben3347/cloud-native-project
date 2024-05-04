@@ -47,7 +47,7 @@ Once the application is deployed, users can:
 2. Enter the name of the movie they want to review.
 3. View the generated movie review along with relevant statistics.
 ## Diagram showing the component and service relationships.
-![Diagram of component and service relationships](/img/MovieReviewDesign.png)
+![Diagram of component and service relationships](/img/MovieAppDesign53.png)
 ## screenshots or animated gifs of working features
 ## A listing of all dependencies including components, languages, frameworks, and libraries
 * **Node.js**
