@@ -6,7 +6,7 @@ const { manualPost } = require('./manualPost');
 const { randomPost } = require('./randomPost');
 
 const app = express();
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -128,6 +128,27 @@ app.get('/randomPost', async (req, res) => {
     res.status(500).send('Internal Server Error');
 
   }
+
+})
+
+app.get("/clear", async (req, res) => {
+  const filePath = 'movieDB.json';
+
+
+  fs.writeFile(filePath, JSON.stringify([]), (err) => {
+    if (err) {
+      console.error('Error clearing file:', err);
+      res.status(500).send('Error clearing file');
+    } else {
+      console.log('JSON file cleared successfully');
+      //res.status(200).send('JSON file cleared successfully');
+      res.send("MoviesDB.json cleared successfully");
+    }
+  });
+
+  // const fileContent = await fs.readFile(filePath, 'utf-8');
+
+  // res.send("Random Movie was added to MoviesDB.json");
 
 })
 

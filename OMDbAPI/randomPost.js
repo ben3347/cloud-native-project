@@ -16,7 +16,7 @@ async function randomPost(){
  
         while(true){
             index = getRandomIntInclusive(0, 45)
-            if (!usedMovies.includes(movieList[index])) { // maybe do a get of that movie 
+            if (!usedMovies.includes(movieList[index])) { 
                 movieName = movieList[index];
                 usedMovies.push(movieName);
                 break;
