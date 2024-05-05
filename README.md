@@ -10,11 +10,12 @@ The primary actions will be the picking of a movie, and the returning of the mov
 
 # Cloud Native Movie Review App
 
-## Project team members
+## Team Members
 - Ben Bejoian 
 - Eleanor Burke 
 - Sean Okpoebo
-## Full description of the project, design, and architecture.
+
+## Project Description
 This project aims to provide users with a convenient platform to access movie reviews and statistics. Think of it as a simplified version of Letterbox. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. Data will be combined into a blog post like UI.
 
 * **Review Microservice (Container 1)**: Requests information from an AI to create a movie review from online ratings and summaries of the requested movie.  
@@ -33,23 +34,38 @@ This project aims to provide users with a convenient platform to access movie re
 
 * **AI**: Integrates OpenAI for generating AI-driven movie reviews.
 
-## A list of features covering the Minimum Viable Product (MVP) goals
+## Minimum Viable Product Goals
 * User-friendly search interface from Ghost
 * AI-generated movie reviews
 * Access to movie statistics via an external API
 * Blog post-like UI for combining data
 * Chron. jobs and manual posting 
-## Full build, run, deployment instructions
-## Full application usage instructions.
+## Full Build, Run, Deployment Instructions
+## Usage Instructions.
 Once the application is deployed, users can:
 
 1. Access the search interface.
 2. Enter the name of the movie they want to review.
 3. View the generated movie review along with relevant statistics.
-## Diagram showing the component and service relationships.
+## Diagram Showing the Component and Service Relationships.
 ![Diagram of component and service relationships](/img/movieAppDesign53.png)
-## screenshots or animated gifs of working features
-## A listing of all dependencies including components, languages, frameworks, and libraries
+* **Movie Information API**
+    * **randomPost.js** calls the OMDb external API to retreive movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
+    * **manualPost.js** calls the OMDb external API to retreive information about the top five all time grossing movies. The data fetched from the API is then added to movieDB.json.
+        1. Avatar
+        2. Avengers: endgame
+        3. Avatar: the way of water
+        4. Titanic
+        5. Star wars: episode VII - the force awakens
+    * **movieDB.json** is a local database that holds the information fetched from the OMDb API. 
+    * **server.js** is a RESTful API for managing the movie information stored in movieDB.json. The API provides endpoints to retrieve all movies, fetch the last movie, retrieve and delete the first movie, add predefined or random movies (calling functions manualPost() and randomPost(), respectively), and clear the entire database. The application uses Express.js for routing and middleware, including CORS for enabling cross-origin requests. This API runs on port 3000.
+## Screenshots or Animated GIFs of Working Features
+### server.js running on localhost:3000
+![](/img/server.jsDemo.gif)
+This gif shows the function of the '/manaulPost', '/randomPost', '/clearDB', and default routes.
+![](/img/serverDemo2.gif)
+This gif shows the function of the '/lastElement' and 'getAndDeleteFirstElement' routes and an invalid route catcher. 
+## Dependencies (e.g., components, languages, frameworks, and libraries)
 * **Node.js**
 * **Docker**
 * **OpenAI**

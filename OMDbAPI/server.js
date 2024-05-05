@@ -30,8 +30,8 @@ app.get('/', async (req, res) => {
     res.json(jsonData);
   } catch (error) {
     // If an error occurs, send an error response
-    console.error('Error dumping JSON file:', error);
-    res.status(500).json({ error: 'Error dumping JSON file' });
+    console.error('Error returning JSON file:', error);
+    res.status(500).json({ error: 'Error returning JSON file' });
   }
 });
 
@@ -131,26 +131,19 @@ app.get('/randomPost', async (req, res) => {
 
 })
 
-app.get("/clear", async (req, res) => {
-  const filePath = 'movieDB.json';
-
-
-  fs.writeFile(filePath, JSON.stringify([]), (err) => {
+app.get('/clearDB', async (req, res) => {
+  fs.writeFile('movieDB.json', JSON.stringify([], null, 2), (err) => {
     if (err) {
       console.error('Error clearing file:', err);
-      res.status(500).send('Error clearing file');
-    } else {
-      console.log('JSON file cleared successfully');
-      //res.status(200).send('JSON file cleared successfully');
-      res.send("MoviesDB.json cleared successfully");
+      res.status(500).send('Internal Server Error');
+      return;
     }
-  });
+  })
 
-  // const fileContent = await fs.readFile(filePath, 'utf-8');
+  console.log("MoviesDB.json cleared successfully");
+  res.send("MoviesDB.json cleared successfully");
 
-  // res.send("Random Movie was added to MoviesDB.json");
-
-})
+});
 
 app.all("*", (req, res) => {
   res.send("Invalid route");
