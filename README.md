@@ -39,7 +39,7 @@ This project aims to provide users with a convenient platform to access movie re
 * AI-generated movie reviews
 * Access to movie statistics via an external API
 * Blog post-like UI for combining data
-* Chron. jobs and manual posting 
+* Manual and Random posting 
 ## Full Build, Run, Deployment Instructions
 ## Usage Instructions.
 Once the application is deployed, users can:
@@ -48,7 +48,7 @@ Once the application is deployed, users can:
 2. Enter the name of the movie they want to review.
 3. View the generated movie review along with relevant statistics.
 ## Diagram Showing the Component and Service Relationships.
-![Diagram of component and service relationships](/img/movieAppDesign53.png)
+![Diagram of component and service relationships](/img/updatedDesign.png)
 * **Movie Information API**
     * **randomPost.js** calls the OMDb external API to retreive movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
     * **manualPost.js** calls the OMDb external API to retreive information about the top five all time grossing movies. The data fetched from the API is then added to movieDB.json.
@@ -58,7 +58,7 @@ Once the application is deployed, users can:
         4. Titanic
         5. Star wars: episode VII - the force awakens
     * **movieDB.json** is a local database that holds the information fetched from the OMDb API. 
-    * **server.js** is a RESTful API for managing the movie information stored in movieDB.json. The API provides endpoints to retrieve all movies, fetch the last movie, retrieve and delete the first movie, add predefined or random movies (calling functions manualPost() and randomPost(), respectively), and clear the entire database. The application uses Express.js for routing and middleware, including CORS for enabling cross-origin requests. This API runs on port 3000.
+    * **server.js** is a RESTful API for managing the movie information stored in movieDB.json. The API provides endpoints to retrieve all movies, fetch the last movie, retrieve and delete the first movie, add predefined or random movies (calling functions manualPost() and randomPost(), respectively), and clear the entire database. The application uses Express.js for routing and middleware, including CORS for enabling cross-origin requests. This API runs on port 3000. 
 ## Screenshots or Animated GIFs of Working Features
 ### server.js running on localhost:3000
 ![](/img/server.jsDemo.gif)
@@ -69,10 +69,10 @@ This gif shows the function of the '/lastElement' and 'getAndDeleteFirstElement'
 * **Node.js**
 * **Docker**
 * **OpenAI**
-* **OMDB API**: https://www.omdbapi.com/ --> key: &apikey=17e7d0ae
+* **OMDB API**: https://www.omdbapi.com/ 
+
+<!-- key: &apikey=17e7d0ae --> 
  <!-- key/link for API? https://www.omdbapi.com/?t=titanic&apikey=17e7d0ae -->
 
 ## Citations from where you copied and gathered ideas or artifacts from. This includes articles, books, repositories, and generative AI tools.
-    - https://technologyadvice.com/blog/information-technology/how-to-use-an-api/ 
-    - https://www.mysqltutorial.org/ 
-    - https://planetscale.com/learn/courses/mysql-for-developers/introduction/course-introduction
+
