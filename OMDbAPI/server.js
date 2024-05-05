@@ -6,7 +6,7 @@ const { manualPost } = require('./manualPost');
 const { randomPost } = require('./randomPost');
 
 const app = express();
-const PORT = process.env.PORT || 3000; //this could be added to a config map
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -30,8 +30,8 @@ app.get('/', async (req, res) => {
     res.json(jsonData);
   } catch (error) {
     // If an error occurs, send an error response
-    console.error('Error dumping JSON file:', error);
-    res.status(500).json({ error: 'Error dumping JSON file' });
+    console.error('Error returning JSON file:', error);
+    res.status(500).json({ error: 'Error returning JSON file' });
   }
 });
 
@@ -130,6 +130,20 @@ app.get('/randomPost', async (req, res) => {
   }
 
 })
+
+app.get('/clearDB', async (req, res) => {
+  fs.writeFile('movieDB.json', JSON.stringify([], null, 2), (err) => {
+    if (err) {
+      console.error('Error clearing file:', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+  })
+
+  console.log("MoviesDB.json cleared successfully");
+  res.send("MoviesDB.json cleared successfully");
+
+});
 
 app.all("*", (req, res) => {
   res.send("Invalid route");

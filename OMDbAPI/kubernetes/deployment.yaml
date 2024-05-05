@@ -1,29 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: omdbapi #restful-ms-app
+  name: movies
+  namespace: omd-movies 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: omdbapi #restful-ms-app
+      app: movies 
   template:
     metadata:
       labels:
-        app: omdbapi #restful-ms-app
+        app: movies 
     spec:
       containers:
-      - name: omdbapi-container #restful-ms-app-container
-        image: eleanorburke/omdbapi:1.0.0
+      - name: movies-container
+        image: eleanorburke/movies:1.0.1
         imagePullPolicy: Always
-        env:
-        # Define the environment variable
-        - name: DATA_MICROSERVICE
-          valueFrom:
-            configMapKeyRef:
-              # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
-              name: my-configmap
-              # Specify the key associated with the value
-              key: DATA_MICROSERVICE
         ports:
-        - containerPort: 1234
+        - containerPort: 3000
