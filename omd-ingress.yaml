@@ -2,10 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: omd-ingress
-  namespace: omd-ghost
+  namespace: omd-omdbapi
 spec:
   defaultBackend:
     service:
-      name: omd-ghost-poster
+      name: omdbapi-service
       port:
-        number: 4000
+        number: 3000
