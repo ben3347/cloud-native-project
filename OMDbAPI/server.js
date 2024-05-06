@@ -146,7 +146,7 @@ app.get('/manualPost', async (req, res) => {
 
 });
 
-// Get route that runs the functoin randomPost()
+// Get route that runs the function randomPost()
 app.get('/randomPost', async (req, res) => {
   try {
 
