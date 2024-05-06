@@ -3,10 +3,9 @@ package dev.movie.reviews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/movie")
@@ -19,31 +18,24 @@ public class MovieController {
         this.movieReviewService = movieReviewService;
     }
 
-    @GetMapping("/{title}/reviews")
-    public ResponseEntity<?> getReviewsByTitle(@PathVariable String title) {
-        // Call the service to retrieve the movie title based on the provided title
-        String movieTitle = movieReviewService.getMovieTitle(title);
-
-        if (movieTitle.equals("Movie title not found.")) {
-            // Handle case where movie title is not found
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(movieTitle);
+    // Endpoint to receive a movie title via POST
+    @PostMapping("/title")
+    public ResponseEntity<?> receiveMovieTitle(@RequestBody Map<String, String> request) {
+        String title = request.get("title");
+        if (title == null || title.isEmpty()) {
+            return ResponseEntity.badRequest().body("Title is missing");
         }
 
-        // Call the service to retrieve the movie reviews based on the title
-        String reviews = movieReviewService.getAICriticsReviewsForMovie(movieTitle);
-
-        if (reviews.equals("Critic reviews not available for movie: " + movieTitle)) {
-            // Handle case where no reviews are available
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(reviews);
+        // Use the received title to get movie reviews
+        String reviews = movieReviewService.getAICriticsReviewsForMovie(title);
+        if (reviews == null || reviews.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No reviews found for the movie.");
         }
-
-        // If reviews are available, you can optionally send them back to the microservice
-        movieReviewService.sendReviewBackToMicroservice(title, reviews);
 
         return ResponseEntity.ok(reviews);
     }
-
 }
+
 
 
 
