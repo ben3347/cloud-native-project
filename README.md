@@ -25,6 +25,16 @@ This project is designed to provide users with a user-friendly and efficient pla
 * Blog post-like UI for combining data
 * Manual and Random posting 
 ## Full Build, Run, Deployment Instructions
+### Movie Information API
+* Development Run Instructions: 
+    * cd OMDbAPI/ 
+    * nmp run dev 
+* Docker Build
+    * docker build -t sokp/omdbapi:v1 . 
+    * docker push sokp/omdbapi:v1
+* Run on Kubernetes 
+    * kubectl apply -f kubernetes 
+
 NEEDS TO BE FINISHED
 ## Usage Instructions.
 Once the application is deployed, users can:
@@ -34,7 +44,7 @@ Once the application is deployed, users can:
 3. View the generated movie review along with relevant information.
 ## Diagram Showing the Component and Service Relationships.
 ![Diagram of component and service relationships](/img/designFinal.png)
-### Movie Information API
+### Movie Information API 
 * **randomPost.js** calls the OMDb external API to retrieve movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
 * **manualPost.js** defines a function manualPost(), which is responsible for fetching movie data from the OMDB API for a predefined list of movies and adds this data to a local JSON file (movieDB.json). Error handling is implemented to manage various scenarios, such as failed API requests, file read/write errors, and JSON parsing issues. <br>
 The five movies are the following...
@@ -88,5 +98,5 @@ This gif shows the function of the '/movie/:title' route fetching, in order, inf
 * Generative AI tools
     * ChatGPT: Code debugging, commenting, and explaining error messages
 * Books 
-    * Kubernetes: Up and Running by Brendan Burns, Joe Beda, and Kelsey Hightower
+    * "Kubernetes: Up and Running by Brendan Burns", by Joe Beda, and Kelsey Hightower
 
