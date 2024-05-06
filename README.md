@@ -8,9 +8,9 @@
 ## Project Description
 This project is designed to provide users with a user-friendly and efficient platform to access comprehensive movie reviews and information. Imagine it as a more straightforward version of Letterboxd, combining all the individual reviews into one review that acts as an "average" of online reviews. This will save users time by decreasing the number of review they need to read before making a decision. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. The information will be organized and displayed in a Ghost UI blog post.
 
-* **Sean: UI (Container 1)**:Combines information from the Movie Information MS and the Review MS to create a single blog post. The blog post will be added to the Ghost UI, which will allow users to click a movie title in the dropdown bar. If the movie is availible, the UI will show the blog post made by calling APIs in containers 2 and 3.
+* **Sean: UI (Container 1)**:Combines information from the Movie Information MS and the Review MS to create a single blog post. The blog post will be added to the Ghost UI, which will allow users to click a movie title in the dropdown bar. If the movie is available, the UI will show the blog post made by calling APIs in containers 2 and 3.
 
-* **Eleanor: Movie Information Microservice (Container 2)**: This container retrieves informations from OMDB API and adds it to movieDB.json which has a RESTful API associated with it so the Ghost container can access the information. For the purpose of the presentation's demonstration, there is a manual post function, which fetches information about the top 5 lifetime grossing movies and adds it to the JSON file. Further development of this MS will lead to the implementation of a chronJob, which calls the randomPost function. This function randomly adds a new movie from the top 50 lifetime grossing movies to the database, allowing users to search for movie review via the Ghost UI.
+* **Eleanor: Movie Information Microservice (Container 2)**: This container retrieves information from OMDB API and adds it to movieDB.json which has a RESTful API associated with it so the Ghost container can access the information. For the purpose of the presentation's demonstration, there is a manual post function, which fetches information about the top 5 lifetime grossing movies and adds it to the JSON file. Further development of this MS will lead to the implementation of a chronJob, which calls the randomPost function. This function randomly adds a new movie from the top 50 lifetime grossing movies to the database, allowing users to search for movie reviews via the Ghost UI.
 
 * **Ben: Review Microservice (Container 3)**: Requests information from Open AI to create a movie review from online ratings and summaries of the requested movie.  
 
@@ -33,16 +33,16 @@ Once the application is deployed, users can:
 2. Click the name of the movie they want a review of.
 3. View the generated movie review along with relevant information.
 ## Diagram Showing the Component and Service Relationships.
-![Diagram of component and service relationships](/img/updatedDesign.png)
+![Diagram of component and service relationships](/img/designFinal.png)
 ### Movie Information API
-* **randomPost.js** calls the OMDb external API to retreive movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
+* **randomPost.js** calls the OMDb external API to retrieve movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
 * **manualPost.js** defines a function manualPost(), which is responsible for fetching movie data from the OMDB API for a predefined list of movies and adds this data to a local JSON file (movieDB.json). Error handling is implemented to manage various scenarios, such as failed API requests, file read/write errors, and JSON parsing issues. <br>
 The five movies are the following...
     1. Avatar
-    2. Avengers: endgame
-    3. Avatar: the way of water
+    2. Avengers: Endgame
+    3. Avatar: the Way of Water
     4. Titanic
-    5. Star wars: episode VII - the force awakens
+    5. Star Wars: Episode VII - The Force Awakens
 * **movieDB.json** is a local database that holds the information fetched from the OMDb API. 
 * **server.js** is a RESTful API for managing the movie information stored in movieDB.json. The API provides endpoints to retrieve all movies, get the last movie, get and delete the first movie, get a specific movie by name, and add predefined or random movies (calling functions manualPost() and randomPost(), respectively), and clear the entire database. The application uses Express.js for routing and middleware, including CORS for enabling cross-origin requests. This API runs on port 3000.
     * **GET /movie/:title** is called by Ghost MS when the users selects a movie they want information about.The ':title' parameter in the route URL allows the app to specify the title of the movie they want to retrieve. This route is designed to be part of a larger movie database management system, allowing clients to retrieve specific movie details based on their titles. 
@@ -75,7 +75,7 @@ This gif shows the function of the '/movie/:title' route fetching, in order, inf
 ## Future Work
 * **Expand Movie Information Sources:** Include additional APIs or data sources to enhace movie data with more information like cast and crew, filming locations, or trivia.
 * **Advanced Search and Filtering:** Increase search functionality with filtering options (e.g., by genre, release year, director) to help users discover movies, instead of relying on users already knowing the movie.
-* **Multilingual Support** Support multiple languages and region-specific content to cater to an international audience.
+* **Multilingual Support:** Support multiple languages and region-specific content to cater to an international audience.
 
 ## Citations from where you copied and gathered ideas or artifacts from. This includes articles, books, repositories, and generative AI tools.
 * YouTube Videos
