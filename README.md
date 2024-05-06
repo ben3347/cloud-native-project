@@ -16,13 +16,13 @@ The primary actions will be the picking of a movie, and the returning of the mov
 - Sean Okpoebo
 
 ## Project Description
-This project aims to provide users with a convenient platform to access movie reviews and statistics. Think of it as a simplified version of Letterbox. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. Data will be combined into a blog post like UI.
+This project aims to provide users with a convenient platform to access movie reviews and information. Think of it as a simplified version of Letterbox. With AI-generated reviews and data pulled from an external API, users can quickly find the information they need about their favorite movies. Data will be combined into a blog post like UI.
 
-* **Review Microservice (Container 1)**: Requests information from an AI to create a movie review from online ratings and summaries of the requested movie.  
+* **Sean: Review Microservice (Container 1)**: Requests information from an AI to create a movie review from online ratings and summaries of the requested movie.  
 
-* **UI (Container 2)**: A ghost UI will allow users to search a movie title in the search bar. If the movie is availible, the UI will show the blog post that container 4 made.
+* **Eleanor: Movie Information Microservice (Container 3)**: This container retrieves informations from OMDB API and adds it to movieDB.json which has a RESTful API associated with it so the Ghost container can access the information. For the purpose of the presentation's demonstration, there is a manual post function, which fetches information about the top 5 lifetime grossing movies and adds it to the JSON file. Further development of this MS will lead to the implementation of a chronJob, which calls the randomPost function. This function randomly adds a new movie from the top 50 lifetime grossing movies to the database, allowing users to search for movie review via the Ghost UI.
 
-* **Movie Information Microservice (Container 3)**: Every 10 minutes of the program running a movie from the top 50 lifetime gross movies is randomly resquested. The Movie Information MS retrieves information about requested movies from OMDB API. This MS will have a manual post function for the presentation, which requests the top 5 lifetime gross for the purpose of the presentation. There will be provisions to prevent movies from being requested multiple times. The information retrieved from OMDB API is added to movieDB.json which has a restFUL API associated with so the other Microservices can access the information. 
+* **Ben: UI (Container 2)**: A ghost UI will allow users to search a movie title in the search bar. If the movie is availible, the UI will show the blog post that container 4 made.
 
 * **Blog Post Microservice (Container 4)**: Combines information from the Movie Information MS and the Review MS to create a single blog post. The blog post will be added to ghost.
 
@@ -51,7 +51,8 @@ Once the application is deployed, users can:
 ![Diagram of component and service relationships](/img/updatedDesign.png)
 * **Movie Information API**
     * **randomPost.js** calls the OMDb external API to retreive movie information (e.g., Genre, Runtime, Writers, etc.) about a randomly picked title from the top 50 all time grossing movies. The data fetched from the API is then added to movieDB.json.
-    * **manualPost.js** calls the OMDb external API to retreive information about the top five all time grossing movies. The data fetched from the API is then added to movieDB.json.
+    * **manualPost.js** defines a function manualPost(), which is responsible for fetching movie data from the OMDB API for a predefined list of movies and adds this data to a local JSON file (movieDB.json). Error handling is implemented to manage various scenarios, such as failed API requests, file read/write errors, and JSON parsing issues. <br>
+    The five movies are the following...
         1. Avatar
         2. Avengers: endgame
         3. Avatar: the way of water
@@ -65,6 +66,8 @@ Once the application is deployed, users can:
 This gif shows the function of the '/manaulPost', '/randomPost', '/clearDB', and default routes.
 ![](/img/serverDemo2.gif)
 This gif shows the function of the '/lastElement' and 'getAndDeleteFirstElement' routes and an invalid route catcher. 
+![](/img/movieTitleDemo.gif)
+
 ## Dependencies (e.g., components, languages, frameworks, and libraries)
 * **Node.js**
 * **Docker**

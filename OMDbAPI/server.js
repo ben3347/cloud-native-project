@@ -101,6 +101,7 @@ app.get('/getAndDeleteFirstElement', async (req, res) => {
 
 });
 
+// GET route that fetches specific movie information by its title 
 app.get('/movie/:title', async (req, res) => {
   const title = req.params.title.toLowerCase();
 
@@ -109,49 +110,25 @@ app.get('/movie/:title', async (req, res) => {
 
     try {
       const movies = JSON.parse(data);
+      const movie = movies.find(movie => movie.Title.toLowerCase() === title);
+
+      if(!movie){
+        return res.status(404).json({ error: 'Movie not found' });
+      } else {
+        console.log(`${title} successful found`);
+        res.json(movie);
+      }
+
     }
     catch (error) {
       console.error('Error parsing JSON data:', error);
     }
-
-
   }
   catch (error) {
     console.error('Error reading JSON data:', error);
   }
 
-
-
-
-  // // Read movie data from movieDB.json
-  // fs.readFile('movieDB.json', 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error(err);
-  //     return res.status(500).json({ error: 'Internal Server Error' });
-  //   }
-
-  //   try {
-  //     const movies = JSON.parse(data);
-
-  //     // Find the movie by title
-  //     const movie = movies.find(movie => movie.Title.toLowerCase() === title);
-
-  //     if (!movie) {
-  //       return res.status(404).json({ error: 'Movie not found' });
-  //     }
-
-  //     // Respond with the found movie
-  //     res.json(movie);
-  //   } catch (error) {
-  //     console.error('Error parsing JSON data:', error);
-  //     res.status(500).json({ error: 'Internal Server Error' });
-  //   }
-  // });
-
-
-
 })
-
 
 
 // GET route that runs the function manualPost()
