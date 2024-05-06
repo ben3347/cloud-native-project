@@ -31,16 +31,18 @@ async function randomPost(){
             let existingData = [];
 
             try {
+                //let existingData = [];
                 const fileContent = await fs.readFile('movieDB.json', 'utf-8');
                 if (fileContent.trim() !== '') {
                     existingData = JSON.parse(fileContent);
                 }
+                
             } catch (error) {
                 // If the file doesn't exist or cannot be read, ignore the error
                 console.error('Error reading data file:', error);
             }
-
-            const newData = existingData.concat(data);
+    
+            let newData = existingData.concat(data);
 
             await fs.writeFile('movieDB.json', JSON.stringify(newData, null, 2));
             console.log('Data added to movieDB.json');
