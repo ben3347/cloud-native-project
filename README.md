@@ -110,6 +110,9 @@ A centralization for accessing the generated blog post. The usage of an API Key 
     * How to FETCH data from an API using JavaScript: https://www.youtube.com/watch?v=37vxWr0WgQk
     * Learn Express JS In 35 Minutes: https://www.youtube.com/watch?v=SccSCuHhOw0
     * How to Build a REST API with Javascript | Node and Express JS Basics Tutorial: https://www.youtube.com/watch?v=bC5KVrX-AlA
+    * Spring AI Introduction: Building AI Applications in Java with Spring: https://www.youtube.com/watch?v=yyvjT0v3lpY
+    * Using Spring AI's Output Parsers to structure the response from LLMs: https://www.youtube.com/watch?v=CuIr3FiG_fc
+    * Working with Prompts in Spring AI - Effectively Communicating with LLMs: https://www.youtube.com/watch?v=ACpLp2KXqgE
 * Articles 
     * Docker Commands and Debugging: https://docs.docker.com/reference/dockerfile/
     * Kubernetes Commands: https://kubernetes.io/docs/home/
