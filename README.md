@@ -97,7 +97,8 @@ Here you can see the function of '/movie', '/{title}', and '/reviews'
 * OpenAI API: Spring AI support for ChatGPT which allows a gateway for easy integration of OpenAI's AI capabilities into this service.
 
 ### UI
-* **Ghost**
+* **Ghost CMS**
+A centralization for accessing the generated blog post. The usage of an API Key allows the post to be called upon data retrieval. Additionally, **Node.js** language is used for the server script exclusively.
 
 ## Future Work
 * **Expand Movie Information Sources:** Include additional APIs or data sources to enhace movie data with more information like cast and crew, filming locations, or trivia.
