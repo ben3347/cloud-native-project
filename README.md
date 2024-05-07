@@ -56,7 +56,8 @@ The five movies are the following...
 * **server.js** is a RESTful API for managing the movie information stored in movieDB.json. The API provides endpoints to retrieve all movies, get the last movie, get and delete the first movie, get a specific movie by name, and add predefined or random movies (calling functions manualPost() and randomPost(), respectively), and clear the entire database. The application uses Express.js for routing and middleware, including CORS for enabling cross-origin requests. This API runs on port 3000.
     * **GET /movie/:title** is called by Ghost MS when the users selects a movie they want information about.The ':title' parameter in the route URL allows the app to specify the title of the movie they want to retrieve. This route is designed to be part of a larger movie database management system, allowing clients to retrieve specific movie details based on their titles. 
 ## Screenshots or Animated GIFs of Working Features
-### server.js running on localhost:3000
+### Movie Information API
+* server.js running on localhost:3000
 ![](/img/server.jsDemo.gif)
 This gif shows the function of the '/manaulPost', '/randomPost', '/clearDB', and default routes.
 ![](/img/serverDemo2.gif)
