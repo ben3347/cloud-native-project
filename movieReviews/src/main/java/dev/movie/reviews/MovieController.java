@@ -17,23 +17,22 @@ public class MovieController {
         this.movieReviewService = movieReviewService;
     }
 
-    // Endpoint to receive a movie title via POST
-    @PostMapping(value = "/{movieId}/review", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> generateAndPostReview(@PathVariable String movieId, @RequestBody String movieTitle) {
+    @PostMapping(value = "/review", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> generateAndPostReview(@RequestBody String movieTitle) {
         String review = movieReviewService.getAICriticsReviewsForMovie(movieTitle);
         if (review == null || review.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"Review not available\"}");
         }
 
-        // Optionally send the review to another microservice
-        movieReviewService.postReviewToMicroservice(movieId, review);
-
-        // Return the generated review within the response entity as JSON
-        String jsonResponse = "{\"movieId\": \"" + movieId + "\", \"review\": \"" + review + "\"}";
-        return ResponseEntity.ok(jsonResponse);
+        ResponseEntity<String> response = movieReviewService.postReviewToMicroservice(review);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return ResponseEntity.ok("{\"message\": \"Review successfully posted\", \"review\": \"" + review + "\"}");
+        } else {
+            return ResponseEntity.status(response.getStatusCode()).body("{\"message\": \"Failed to post review\"}");
+        }
     }
-
 }
+
 
 
 

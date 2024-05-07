@@ -29,15 +29,11 @@ public class MovieReviewService {
         return chatClient.call("Give me critic reviews of the movie " + movieTitle);
     }
 
-    public void postReviewToMicroservice(String movieId, String review) {
+    public ResponseEntity<String> postReviewToMicroservice(String review) {
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("movieId", movieId);
         requestBody.put("review", review);
 
         ResponseEntity<String> response = restTemplate.postForEntity(reviewPostUrl, requestBody, String.class);
-        if (!response.getStatusCode().is2xxSuccessful()) {
-            // Handle the case where the POST request did not succeed
-            System.out.println("Failed to post review to microservice: " + response.getStatusCode());
-        }
+        return response;
     }
 }
