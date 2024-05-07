@@ -25,15 +25,11 @@ app.use(
 );
 app.use(bodyParser.text({ limit: "200mb" }));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 // Route to serve HTML form for entering movie details
-app.get("/input", (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
     <form action="/submit-movie-details" method="post">
-      <label for="title">Title:</label><br>
+      <label for="title">Please enter the movie title:</label><br>
       <input type="text" id="title" name="title"><br>
       <button type="submit">Submit</button>
     </form>
