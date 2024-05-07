@@ -40,3 +40,7 @@ curl -X POST \
   ```
 
 Now, a generated post can be successfully posted, through the POSTMAN/curl commands.
+
+With the second and third microservice, the server connects with and fetches relevant information (JSON of movie data; Generated Review) in order to generate a blog post that gets posted in the format of a blog post on Ghost CMD, at URL _http://34.49.160.195/_.
+
+By entering a movie name, the service fetches the JSON data from microservice 2 (OMDb API), and then displays it, then initializes a movie review generation (OpenAI).
