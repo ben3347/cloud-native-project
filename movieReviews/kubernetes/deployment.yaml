@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: movie-reviews-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: movie-reviews-app
@@ -19,11 +19,11 @@ spec:
             - containerPort: 8086
           resources:
             limits:
-              cpu: "1"  # Limit to 1 CPU
-              memory: "512Mi"  # Limit to 512 MB RAM
+              cpu: "1"
+              memory: "512Mi"
             requests:
-              cpu: "0.5"  # Request 0.5 CPUs
-              memory: "256Mi"  # Request 256 MB RAM
+              cpu: "0.5"
+              memory: "256Mi"
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"

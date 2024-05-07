@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: movie-reviews-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-    - port: 8086  # External port
-      targetPort: 8086  # Port on the container
+    - port: 8086
+      targetPort: 8086
       protocol: TCP
   selector:
     app: movie-reviews-app
