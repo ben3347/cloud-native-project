@@ -35,7 +35,6 @@ This project is designed to provide users with a user-friendly and efficient pla
 * Run on Kubernetes 
     * kubectl apply -f kubernetes 
 
-NEEDS TO BE FINISHED
 ## Usage Instructions.
 Once the application is deployed, users can:
 
