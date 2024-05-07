@@ -2,10 +2,9 @@ package dev.movie.reviews;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/movie")
@@ -19,21 +18,21 @@ public class MovieController {
     }
 
     // Endpoint to receive a movie title via POST
-    @PostMapping("/title")
-    public ResponseEntity<?> receiveMovieTitle(@RequestBody Map<String, String> request) {
-        String title = request.get("title");
-        if (title == null || title.isEmpty()) {
-            return ResponseEntity.badRequest().body("Title is missing");
+    @PostMapping(value = "/{movieId}/review", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> generateAndPostReview(@PathVariable String movieId, @RequestBody String movieTitle) {
+        String review = movieReviewService.getAICriticsReviewsForMovie(movieTitle);
+        if (review == null || review.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"Review not available\"}");
         }
 
-        // Use the received title to get movie reviews
-        String reviews = movieReviewService.getAICriticsReviewsForMovie(title);
-        if (reviews == null || reviews.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No reviews found for the movie.");
-        }
+        // Optionally send the review to another microservice
+        movieReviewService.postReviewToMicroservice(movieId, review);
 
-        return ResponseEntity.ok(reviews);
+        // Return the generated review within the response entity as JSON
+        String jsonResponse = "{\"movieId\": \"" + movieId + "\", \"review\": \"" + review + "\"}";
+        return ResponseEntity.ok(jsonResponse);
     }
+
 }
 
 
