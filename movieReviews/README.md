@@ -33,24 +33,34 @@ To run the application locally, follow these steps:
 Clone the repository and navigate to the directory.
 Build the project using Maven:
 
+```
 mvn clean install
+```
 
 Run the application:
 
+```
 java -jar target/reviews-0.0.1-SNAPSHOT.jar
+```
 
 Using Docker
 To run the application using Docker, you can build a Docker image and run it as a container:
 
 Build the Docker image:
 
+```
 docker build -t movie-reviews .
+```
 
 Run the container:
 
+```
 docker run -p 8086:8086 movie-reviews
+```
 
 Once running locally this is the command I use to call the MovieController and get the reviews of the movie locally.
 You can just run this command in your terminal in the home directory.
 
+```
 http :8086/movie/{movie-title-of-your-choice}/reviews                   
+```
