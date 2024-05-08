@@ -1,16 +1,16 @@
-### Movie Reviews Application
+# Movie Reviews Application
 
 ## Overview
 
 The Movie Reviews Application is a Spring Boot service designed to generate movie reviews using AI and post them to a specified microservice. It utilizes OpenAI's API to create reviews and interacts with an external reviews microservice to post these reviews.
 
-# Features
+### Features
 
 * AI-Generated Reviews: Uses OpenAI's GPT-3.5 Turbo model to generate critical reviews of movies.
 * RESTful API: Provides an API endpoint to receive movie titles, generate reviews, and post them to a review microservice.
 * Docker Integration: Includes Docker configuration for easy deployment and scaling.
 
-# Prerequisites
+### Prerequisites
 
 Before you start, make sure you have the following installed:
 
@@ -25,7 +25,7 @@ OPENAI_API_KEY: Your OpenAI API key for accessing AI services.
 movie.review.post.url: URL of the review microservice where the reviews will be posted.
 These can be set in your application.properties or passed as command line arguments.
 
-# Running the Application
+### Running the Application
 
 Locally
 To run the application locally, follow these steps:
